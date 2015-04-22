@@ -46,6 +46,7 @@ public class GhprbTrigger extends Trigger<AbstractProject<?, ?>> {
     private final String cron;
     private final String triggerPhrase;
     private final Boolean onlyTriggerPhrase;
+    private final Boolean suppressTestingRequest;
     private final Boolean useGitHubHooks;
     private final Boolean permitAll;
     private final String commentFilePath;
@@ -66,6 +67,7 @@ public class GhprbTrigger extends Trigger<AbstractProject<?, ?>> {
                         String cron,
                         String triggerPhrase,
                         Boolean onlyTriggerPhrase,
+                        Boolean suppressTestingRequest,
                         Boolean useGitHubHooks,
                         Boolean permitAll,
                         Boolean autoCloseFailedPullRequests,
@@ -83,6 +85,7 @@ public class GhprbTrigger extends Trigger<AbstractProject<?, ?>> {
         this.cron = cron;
         this.triggerPhrase = triggerPhrase;
         this.onlyTriggerPhrase = onlyTriggerPhrase;
+        this.suppressTestingRequest = suppressTestingRequest;
         this.useGitHubHooks = useGitHubHooks;
         this.permitAll = permitAll;
         this.autoCloseFailedPullRequests = autoCloseFailedPullRequests;
@@ -292,6 +295,10 @@ public class GhprbTrigger extends Trigger<AbstractProject<?, ?>> {
 
     public Boolean getOnlyTriggerPhrase() {
         return onlyTriggerPhrase != null && onlyTriggerPhrase;
+    }
+    
+    public Boolean getSuppressTestingRequest() {
+        return suppressTestingRequest;
     }
 
     public Boolean getUseGitHubHooks() {
