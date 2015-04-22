@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  */
 public class GhprbPullRequest {
 
-    private static final Logger logger = Logger.getLogger(GhprbPullRequest.class.getName());
+    private static final Logger logger = Logger.getLogger(GhprbPullRequest.class.getPackage().getName());
 
     private final int id;
     private final GHUser author;

@@ -181,7 +181,7 @@ public abstract class GhprbBaseBuildManager implements GhprbBuildManager {
 	}
 
 	protected static final Logger LOGGER = Logger.getLogger(
-		GhprbBaseBuildManager.class.getName());
+		GhprbBaseBuildManager.class.getPackage().getName());
 
 	protected AbstractBuild build;
 

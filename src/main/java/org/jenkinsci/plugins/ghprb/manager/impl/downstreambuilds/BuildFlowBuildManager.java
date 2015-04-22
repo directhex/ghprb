@@ -20,7 +20,7 @@ import hudson.tasks.test.AggregatedTestResultAction;
  */
 public class BuildFlowBuildManager extends GhprbBaseBuildManager {
 
-	private static final Logger logger = Logger.getLogger(BuildFlowBuildManager.class.getName());
+	private static final Logger logger = Logger.getLogger(BuildFlowBuildManager.class.getPackage().getName());
 
 	public BuildFlowBuildManager(AbstractBuild build) {
 		super(build);

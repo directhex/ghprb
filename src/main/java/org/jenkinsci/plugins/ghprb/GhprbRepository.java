@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class GhprbRepository {
 
-    private static final Logger logger = Logger.getLogger(GhprbRepository.class.getName());
+    private static final Logger logger = Logger.getLogger(GhprbRepository.class.getPackage().getName());
     private static final EnumSet<GHEvent> HOOK_EVENTS = EnumSet.of(GHEvent.ISSUE_COMMENT, GHEvent.PULL_REQUEST);
 
     private final String reponame;

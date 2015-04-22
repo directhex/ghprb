@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 @Extension
 public class GhprbRootAction implements UnprotectedRootAction {
     static final String URL = "ghprbhook";
-    private static final Logger logger = Logger.getLogger(GhprbRootAction.class.getName());
+    private static final Logger logger = Logger.getLogger(GhprbRootAction.class.getPackage().getName());
 
     public String getIconFileName() {
         return null;
