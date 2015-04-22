@@ -115,7 +115,24 @@ public class GhprbBuilds {
         } else {
             state = GHCommitState.FAILURE;
         }
-        repo.createCommitStatus(build, state, (c.isMerged() ? "Merged build finished." : "Build finished."), c.getPullID(), trigger.getCommitStatusContext(), listener.getLogger());
+        
+        JobConfiguration jobConfiguration =
+            JobConfiguration.builder()
+                .printStackTrace(trigger.isDisplayBuildErrorsOnDownstreamBuilds())
+                .build();
+
+        GhprbBuildManager buildManager =
+            GhprbBuildManagerFactoryUtil.getBuildManager(build, jobConfiguration);
+        
+        StringBuilder replyMessage = new StringBuilder();
+        
+        if (c.isMerged()) {
+            replyMessage.append("Merged build finished. ");
+        } else {
+            replyMessage.append("Build finished. ");
+        }
+        replyMessage.append(buildManager.getTestResults());
+        repo.createCommitStatus(build, state, replyMessage.toString(), c.getPullID(), trigger.getCommitStatusContext(), listener.getLogger());
 
         StringBuilder msg = new StringBuilder();
 
