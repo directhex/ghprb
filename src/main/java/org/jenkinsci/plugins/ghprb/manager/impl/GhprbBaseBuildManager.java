@@ -14,6 +14,7 @@ import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.model.Result;
 import hudson.tasks.junit.TestResult;
+import hudson.tasks.junit.TestResultAction;
 import hudson.tasks.junit.CaseResult;
 import hudson.tasks.test.AggregatedTestResultAction;
 import hudson.tasks.test.AggregatedTestResultAction.ChildReport;
@@ -178,6 +179,18 @@ public abstract class GhprbBaseBuildManager implements GhprbBuildManager {
 		}
 
 		return sb.toString();
+	}
+
+	public String getOneLineTestResults() {
+
+		TestResultAction testResultAction =
+				build.getAction(TestResultAction.class);
+
+		if (testResultAction == null) {
+			return "No test results found.";
+		}
+
+		return String.format("%d tests run, %d skipped, %d failed.", testResultAction.getTotalCount(), testResultAction.getSkipCount(), testResultAction.getFailCount());
 	}
 
 	protected static final Logger LOGGER = Logger.getLogger(
