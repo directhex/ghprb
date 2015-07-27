@@ -125,13 +125,14 @@ public class GhprbBuilds {
             GhprbBuildManagerFactoryUtil.getBuildManager(build, jobConfiguration);
         
         StringBuilder replyMessage = new StringBuilder();
-        
-        if (c.isMerged()) {
-            replyMessage.append("Merged build finished. ");
-        } else {
-            replyMessage.append("Build finished. ");
-        }
         replyMessage.append(buildManager.getOneLineTestResults());
+
+        if (c.isMerged()) {
+            replyMessage.append(" Merged build finished.");
+        } else {
+            replyMessage.append(" Build finished.");
+        }
+
         repo.createCommitStatus(build, state, replyMessage.toString(), c.getPullID(), trigger.getCommitStatusContext(), listener.getLogger());
 
         StringBuilder msg = new StringBuilder();
