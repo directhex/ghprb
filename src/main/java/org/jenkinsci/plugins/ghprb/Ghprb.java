@@ -178,6 +178,10 @@ public class Ghprb {
     public boolean ifOnlyTriggerPhrase() {
         return trigger.getOnlyTriggerPhrase();
     }
+    
+    public boolean suppressTestingRequest() {
+        return trigger.getSuppressTestingRequest();
+    }
 
     public boolean isWhitelisted(GHUser user) {
         return trigger.getPermitAll()

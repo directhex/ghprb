@@ -115,7 +115,7 @@ public class GhprbPullRequest {
         try {
             if (ghprb.isWhitelisted(getPullRequestAuthor())) {
                 setAccepted(true);
-            } else {
+            } else if (!helper.suppressTestingRequest()) {
                 logger.log(Level.INFO,
                            "Author of #{0} {1} on {2} not in whitelist!",
                            new Object[] { id, author.getLogin(), reponame });
@@ -492,7 +492,7 @@ public class GhprbPullRequest {
 
     /**
      * Base and Ref are part of the PullRequest object
-     * 
+     *
      * @return
      */
     public String getTarget() {
@@ -505,7 +505,7 @@ public class GhprbPullRequest {
 
     /**
      * Head and Ref are part of the PullRequest object
-     * 
+     *
      * @return
      */
     public String getSource() {
@@ -518,7 +518,7 @@ public class GhprbPullRequest {
 
     /**
      * Title is part of the PullRequest object
-     * 
+     *
      * @return
      */
     public String getTitle() {
@@ -541,7 +541,7 @@ public class GhprbPullRequest {
 
     /**
      * The description body is part of the PullRequest object
-     * 
+     *
      * @return
      */
     public String getDescription() {
@@ -558,7 +558,7 @@ public class GhprbPullRequest {
 
     /**
      * Author is part of the PullRequest Object
-     * 
+     *
      * @return
      * @throws IOException
      */
@@ -568,7 +568,7 @@ public class GhprbPullRequest {
 
     /**
      * Get the PullRequest object for this PR
-     * 
+     *
      * @param force - forces the code to go get the PullRequest from GitHub now
      * @return
      * @throws IOException
@@ -610,7 +610,7 @@ public class GhprbPullRequest {
 
     /**
      * Email address is collected from GitHub as extra information, so lets cache it.
-     * 
+     *
      * @return
      */
     public String getAuthorEmail() {
